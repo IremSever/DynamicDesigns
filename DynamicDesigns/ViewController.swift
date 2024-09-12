@@ -7,19 +7,20 @@
 
 import UIKit
 import FirebaseRemoteConfig
+import GoogleMobileAds
 
-class ViewController: UIViewController {
-
+class ViewController: UIViewController, GADBannerViewDelegate {
+    var bannerView: GADBannerView!
     private var viewBg1: UIView = {
         let view = UIView()
-        view.backgroundColor = .cyan
+        view.backgroundColor = UIColor.cyan.withAlphaComponent(1)
         view.isHidden = true
         return view
     }()
     
     private var viewBg2: UIView = {
         let view = UIView()
-        view.backgroundColor = .yellow
+        view.backgroundColor = UIColor.systemIndigo.withAlphaComponent(1)
         view.isHidden = true
         return view
     }()
@@ -30,8 +31,19 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
      
-//        view.addSubview(viewBg1)
-//        view.addSubview(viewBg2)
+        view.addSubview(viewBg1)
+        view.addSubview(viewBg2)
+        view.addSubview(buttonStart)
+        //google mobile ads
+        bannerView = GADBannerView(adSize: kGADAdSizeSmartBannerPortrait)
+        //addBannerViewToView(bannerView)
+        
+        //bannerView.adSize = GADCurrentOrientationAnchoredAdaptiveBannerAdSizeWithWidth(viewWidth)
+        
+        bannerView.adUnitID = "ca-app-pub-3940256099942544/2435281174"
+        bannerView.rootViewController = self
+        bannerView.load(GADRequest())
+        bannerView.delegate = self
         
         fetchValues()
     }
@@ -86,10 +98,40 @@ class ViewController: UIViewController {
     
     @IBAction func buttonStart(_ sender: Any) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-          let homeViewController = storyboard.instantiateViewController(withIdentifier: "HomeViewController")
-       as! HomeViewController
-          navigationController?.pushViewController(homeViewController, animated:
-       true)
+        let homeViewController = storyboard.instantiateViewController(withIdentifier: "HomeViewController")
+        as! HomeViewController
+        navigationController?.pushViewController(homeViewController, animated:
+                                                    true)
     }
+    
+    func addBannerViewToView(_ bannerView: GADBannerView) {
+        bannerView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(bannerView)
+        
+        view.addConstraints(
+            [NSLayoutConstraint(item: bannerView,
+                                attribute: .bottom,
+                                relatedBy: .equal,
+                                toItem: view.safeAreaLayoutGuide,
+                                attribute: .bottom,
+                                multiplier: 1,
+                                constant: 0),
+             NSLayoutConstraint(item: bannerView,
+                                attribute: .centerX,
+                                relatedBy: .equal,
+                                toItem: view,
+                                attribute: .centerX,
+                                multiplier: 1,
+                                constant: 0)
+            ])
+    }
+    
+}
+
+extension ViewController {
+    func bannerViewDidReceiveAd(_ bannerView: GADBannerView) {
+      addBannerViewToView(bannerView)
+    }
+   
 }
 
