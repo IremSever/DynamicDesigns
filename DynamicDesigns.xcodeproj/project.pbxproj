@@ -15,6 +15,7 @@
 		61782E192C92565000A29668 /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */ = {isa = PBXBuildFile; productRef = 61782E182C92565000A29668 /* FirebaseAnalyticsWithoutAdIdSupport */; };
 		61782E1B2C92565A00A29668 /* FirebaseAppCheck in Frameworks */ = {isa = PBXBuildFile; productRef = 61782E1A2C92565A00A29668 /* FirebaseAppCheck */; };
 		61782E1D2C92567A00A29668 /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = 61782E1C2C92567A00A29668 /* FirebaseMessaging */; };
+		61782E1F2C92BF8B00A29668 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61782E1E2C92BF8B00A29668 /* HomeViewController.swift */; };
 		61C6D6802C9232F700C7563D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61C6D67F2C9232F700C7563D /* AppDelegate.swift */; };
 		61C6D6822C9232F700C7563D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61C6D6812C9232F700C7563D /* SceneDelegate.swift */; };
 		61C6D6842C9232F700C7563D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61C6D6832C9232F700C7563D /* ViewController.swift */; };
@@ -25,6 +26,7 @@
 
 /* Begin PBXFileReference section */
 		61000D602C924CF600A08D23 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		61782E1E2C92BF8B00A29668 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		61C6D67C2C9232F700C7563D /* DynamicDesigns.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DynamicDesigns.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		61C6D67F2C9232F700C7563D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		61C6D6812C9232F700C7563D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -60,6 +62,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		61782E202C92BF9500A29668 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				61782E1E2C92BF8B00A29668 /* HomeViewController.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
 		61C6D6732C9232F700C7563D = {
 			isa = PBXGroup;
 			children = (
@@ -80,9 +90,10 @@
 		61C6D67E2C9232F700C7563D /* DynamicDesigns */ = {
 			isa = PBXGroup;
 			children = (
+				61C6D6832C9232F700C7563D /* ViewController.swift */,
+				61782E202C92BF9500A29668 /* Home */,
 				61C6D67F2C9232F700C7563D /* AppDelegate.swift */,
 				61C6D6812C9232F700C7563D /* SceneDelegate.swift */,
-				61C6D6832C9232F700C7563D /* ViewController.swift */,
 				61C6D6852C9232F700C7563D /* Main.storyboard */,
 				61C6D6882C9232F800C7563D /* Assets.xcassets */,
 				61C6D68A2C9232F800C7563D /* LaunchScreen.storyboard */,
@@ -179,6 +190,7 @@
 				61C6D6842C9232F700C7563D /* ViewController.swift in Sources */,
 				61C6D6802C9232F700C7563D /* AppDelegate.swift in Sources */,
 				61C6D6822C9232F700C7563D /* SceneDelegate.swift in Sources */,
+				61782E1F2C92BF8B00A29668 /* HomeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

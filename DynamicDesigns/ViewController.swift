@@ -10,48 +10,40 @@ import FirebaseRemoteConfig
 
 class ViewController: UIViewController {
 
-    private var view1: UIView = {
+    private var viewBg1: UIView = {
         let view = UIView()
         view.backgroundColor = .cyan
         view.isHidden = true
         return view
     }()
     
-    private var view2: UIView = {
+    private var viewBg2: UIView = {
         let view = UIView()
         view.backgroundColor = .yellow
         view.isHidden = true
         return view
     }()
     
-    private var view3: UIView = {
-        let view = UIView()
-        view.backgroundColor = .orange
-        view.isHidden = true
-        return view
-    }()
-    
+    @IBOutlet weak var buttonStart: UIButton!
     private let removeConfig = RemoteConfig.remoteConfig()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.addSubview(view1)
-        view.addSubview(view2)
-        view.addSubview(view3)
+     
+//        view.addSubview(viewBg1)
+//        view.addSubview(viewBg2)
         
         fetchValues()
     }
     
     override func viewDidLayoutSubviews() {
-        view1.frame = view.bounds
-        view2.frame = view.bounds
-        view3.frame = view.bounds
+        viewBg1.frame = view.bounds
+        viewBg2.frame = view.bounds
     }
     
     func fetchValues() {
         let defaults: [String: NSObject] = [
             "change_ui": false as NSObject
-        
         ]
         removeConfig.setDefaults(defaults)
         
@@ -85,10 +77,19 @@ class ViewController: UIViewController {
     
     func chageUI(newUI: Bool) {
         if newUI {
-            view1.isHidden = false
+            viewBg1.isHidden = false
         } else {
-            view2.isHidden = false
+            viewBg2.isHidden = false
         }
+    }
+    
+    
+    @IBAction func buttonStart(_ sender: Any) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+          let homeViewController = storyboard.instantiateViewController(withIdentifier: "HomeViewController")
+       as! HomeViewController
+          navigationController?.pushViewController(homeViewController, animated:
+       true)
     }
 }
 
