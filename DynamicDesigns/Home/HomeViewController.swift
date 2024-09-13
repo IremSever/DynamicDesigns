@@ -119,7 +119,11 @@ class HomeViewController: UIViewController, UIImagePickerControllerDelegate & UI
     
     @IBAction func buttonCut(_ sender: Any) {
         if let croppedImage = cropImageToPath() {
-            imgDesigned.image = croppedImage }
+            imgDesigned.image = croppedImage
+            imgDesigned.contentMode = .scaleAspectFit
+            
+            removeSelectedAreaFromImage()
+        }
         
     }
     @IBAction func buttonSave(_ sender: Any) {
@@ -140,11 +144,7 @@ class HomeViewController: UIViewController, UIImagePickerControllerDelegate & UI
                 guard let url = url, error == nil else {
                     return
                 }
-                
-                
                 self.showSavePanel()
-                
-          
                 DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
                     self.buttonRefresh(sender)
                 }
@@ -196,23 +196,37 @@ class HomeViewController: UIViewController, UIImagePickerControllerDelegate & UI
     func cropImageToPath() -> UIImage? {
         guard let image = imgSelected.image else { return nil }
         
-        UIGraphicsBeginImageContextWithOptions(imgSelected.bounds.size, false, 0)
+        UIGraphicsBeginImageContextWithOptions(imgSelected.bounds.size, false, image.scale)
         let context = UIGraphicsGetCurrentContext()
         
-        // original image
-        image.draw(in: imgSelected.bounds)
-        
-        // cropped
         context?.addPath(path.cgPath)
-        context?.setFillColor(UIColor.white.cgColor)
-        context?.fillPath()
+        context?.clip()
+
+        image.draw(in: imgSelected.bounds)
         
         let croppedImage = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
         
         return croppedImage
     }
-    
+
+    func removeSelectedAreaFromImage() {
+        guard let image = imgSelected.image else { return }
+        
+        UIGraphicsBeginImageContextWithOptions(imgSelected.bounds.size, false, image.scale)
+        let context = UIGraphicsGetCurrentContext()
+        
+        image.draw(in: imgSelected.bounds)
+        
+        context?.addPath(path.cgPath)
+        context?.setFillColor(UIColor.white.cgColor)
+        context?.fillPath()
+
+        let updatedImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        
+        imgSelected.image = updatedImage
+    }
     
     func createSavePanel() {
         panelSuccess = UIView(frame: CGRect(x: 0, y: 0, width: 200, height: 200))
