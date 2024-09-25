@@ -35,6 +35,7 @@ class ViewController: UIViewController, GADBannerViewDelegate, GADFullScreenCont
         view.addSubview(viewBg1)
         view.addSubview(viewBg2)
         view.addSubview(buttonStart)
+        
         //google mobile ads
         viewBanner = GADBannerView(adSize: GADPortraitAnchoredAdaptiveBannerAdSizeWithWidth(250))
         viewBanner.adUnitID = "ca-app-pub-3940256099942544/2435281174"
@@ -50,9 +51,6 @@ class ViewController: UIViewController, GADBannerViewDelegate, GADFullScreenCont
             self.viewInterstitial = ad
             self.viewInterstitial?.fullScreenContentDelegate = self
         }
-        
-        
-        
         fetchValues()
     }
     
@@ -134,14 +132,14 @@ class ViewController: UIViewController, GADBannerViewDelegate, GADFullScreenCont
             ])
     }
     
-    // Reklam gösterimi tamamlandığında HomeViewController'a geçiş
+    // ads to homeviewcontr
     func goToHomeViewController() {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let homeViewController = storyboard.instantiateViewController(withIdentifier: "HomeViewController") as! HomeViewController
         navigationController?.pushViewController(homeViewController, animated: true)
     }
     
-    // Interstitial reklam kapandığında çağrılan fonksiyon
+    // Interstitial ads finish
     func adDidDismissFullScreenContent(_ ad: GADFullScreenPresentingAd) {
         goToHomeViewController()
     }
