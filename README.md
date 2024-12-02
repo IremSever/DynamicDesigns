@@ -19,7 +19,7 @@ Monetize your app effectively with Google Interstitial Ads. DynamicDesigns integ
 ### Image Cut Feature
 DynamicDesigns includes an Image Cut feature, enabling users to crop and edit images directly within the app. Whether you’re preparing assets for a project or tweaking design elements, this tool simplifies the process, saving time and effort.
 
-<mp4 src="https://github.com/user-attachments/assets/c4019c40-d66c-45e1-9a0a-9cf87ebdd8c9" width="250"/>
+<video src="https://github.com/user-attachments/assets/c4019c40-d66c-45e1-9a0a-9cf87ebdd8c9" width="250"/>
 
 
 
